@@ -29,3 +29,13 @@ function MoveLeft()
 {
     ws.send("MoveLeft");
 }
+
+function MoveForward()
+{
+    ws.send("MoveForward");
+}
+
+function MoveBackward()
+{
+    ws.send("MoveBackward");
+}

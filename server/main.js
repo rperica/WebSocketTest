@@ -31,7 +31,15 @@ wss.on("connection", ws => {
             case "MoveLeft":
                 data=LoadJSON("Data/moveLeft.json");
                 BroadCastData(data);
-                break;         
+                break;
+            case "MoveForward":
+                data=LoadJSON("Data/moveForward.json");
+                BroadCastData(data);
+                break;               
+            case "MoveBackward":
+                data=LoadJSON("Data/moveBackward.json");
+                BroadCastData(data);
+                break;  
         }
     });
 
