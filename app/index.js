@@ -2,7 +2,6 @@ const ws = new WebSocket("ws://localhost:8080");
 
 ws.addEventListener("open", () => {
     console.log("We are connected");
-    ws.send("How are you?");
 });
 
 ws.onmessage=(WebSocketMessage) => {
@@ -10,32 +9,31 @@ ws.onmessage=(WebSocketMessage) => {
     console.log("Message from " + ws.url + " is " + data.type);
 };
 
-function MoveUp()
+function Transform(type,x,y,z)
 {  
-    ws.send("MoveUp");
+    information.type=type;
+
+    information.message.x=x;
+    information.message.y=y;
+    information.message.z=z;
+
+    const json=JSON.stringify(information);
+    ws.send(json);
+
+    console.log(information);
+    console.log(json);
 }
 
-function MoveDown()
+function SelectCube(ID)
 {
-    ws.send("MoveDown");
+   information.objectID=ID;
 }
 
-function MoveRight()
-{
-    ws.send("MoveRight");
-}
+let information=new Object();
+information.objectID=0;
+information.type="Empty";
 
-function MoveLeft()
-{
-    ws.send("MoveLeft");
-}
-
-function MoveForward()
-{
-    ws.send("MoveForward");
-}
-
-function MoveBackward()
-{
-    ws.send("MoveBackward");
-}
+information.message=new Object();
+information.message.x=0.0;
+information.message.y=0.0;
+information.message.z=0.0;

@@ -13,6 +13,7 @@ public class Message
 [System.Serializable]
 public class PayLoad
 {
+    public int objectID;
     public string type;
     public Message message;
 }
