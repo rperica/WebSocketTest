@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Message
+public class Vec3
 {
     public double x;
     public double y;
@@ -11,9 +11,9 @@ public class Message
 }
 
 [System.Serializable]
-public class PayLoad
+public class Payload
 {
-    public int objectID;
+    public int screenID;
     public string type;
-    public Message message;
+    public Vec3 vec3;
 }

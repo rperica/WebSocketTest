@@ -10,6 +10,7 @@ ws.onmessage=(WebSocketMessage) => {
 };
 
 let ID = 0;
+let currentID=0;
 
 //Object
 let message=new Object();
@@ -36,7 +37,9 @@ function RemoveScreen(currentID)
     ws.send(json);
 }
 
-function Transform()
+function Transform(type)
 {
-
+    message.type=type;
+    const json=JSON.stringify(message);
+    ws.send(json);
 }
