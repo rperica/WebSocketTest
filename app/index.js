@@ -1,39 +1,27 @@
-const ws = new WebSocket("ws://localhost:8080");
+$(document).ready(function() {
+    $('#addbutton').click(function() {
+    	$("#select").append($('<option>', {
+          	    value: ID,
+                text: "Screen"+ID.toString()            
+        }))
 
-ws.addEventListener("open", () => {
-    console.log("We are connected");
-});
+        $("#select").val(ID).change();
 
-ws.onmessage=(WebSocketMessage) => {
-    const data=JSON.parse(WebSocketMessage.data);
-    console.log("Message from " + ws.url + " is " + data.type);
-};
+        AddScreen(ID);
+        ID=ID+1;
+    })
 
-function Transform(type,x,y,z)
-{  
-    information.type=type;
+    $('#deletebutton').click(function() {
+        var currentID=$('select').val();
 
-    information.message.x=x;
-    information.message.y=y;
-    information.message.z=z;
-
-    const json=JSON.stringify(information);
-    ws.send(json);
-
-    console.log(information);
-    console.log(json);
-}
-
-function SelectCube(ID)
-{
-   information.objectID=ID;
-}
-
-let information=new Object();
-information.objectID=0;
-information.type="Empty";
-
-information.message=new Object();
-information.message.x=0.0;
-information.message.y=0.0;
-information.message.z=0.0;
+        if(currentID!=null){
+            console.log(currentID);
+            $('#select option').each(function() {
+                if ($(this).val() == currentID) {
+                    $(this).remove();
+                    RemoveScreen(currentID);
+                }
+            });
+        }
+    })
+})

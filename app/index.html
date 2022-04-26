@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title> WebSocketTest </title> 
         <meta charset="utf-8">
-        <title> WebSocketTest</title>
+
+        <link rel="stylesheet" href="index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
+
     <body>
-        <h1>WebSocket App</h1>
-        <div>
-            Chose cube <br>
-            <input type="radio" name="object" value="0" id="redCube" onclick="SelectCube(0)" checked> 
-            <label for="redCube">Red</label>
+        <div id="header" class="container">
+            WebSocketTest
+        </div>
+        <div id="toolbar" class="container">
+            <button id="addbutton"> Add </button>
+            <button id="deletebutton"> Delete </button>
 
-            <input type="radio" name="object" value="1" id="blueCube" onclick="SelectCube(1)"> 
-            <label for="blueCube">Blue</label>
+            Select
+            <select id="select">           
+            </select> 
         </div>
-        <br>
-        <div>
-            Move 
-            <br>
-            <button onclick="Transform('Movement',0.0,1.0,0.0)">   Up       </button>
-            <button onclick="Transform('Movement',0.0,-1.0,0.0)">  Down     </button>
-            <button onclick="Transform('Movement',1.0,0.0,0.0)">   Right    </button> 
-            <br>
-            <button onclick="Transform('Movement',-1.0,0.0,0.0)">  Left     </button>
-            <button onclick="Transform('Movement',0.0,0.0,1.0)">   Forward  </button>
-            <button onclick="Transform('Movement',0.0,0.0,-1.0)">  Backward </button>
+        <div id="controls">
+            <div id="translate">
+                <p> Translate</p>
+                <div>
+                    X
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+                <div>
+                    Y
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+                <div>
+                    Z
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+            </div>
+            <div id="rotate">
+                <p> Rotate </p>
+                <div>
+                    X
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+                <div>
+                    Y
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+                <div>
+                    Z
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+            </div>
+            <div id="scale">
+                <p> Scale </p>
+                <div>
+                    S
+                    <input type="range" min="-100" max="100" value="0">
+                </div>
+            </div>
         </div>
-        <br>
-        <div>
-            Rotate 
-            <br>
-            <button onclick="Transform('Rotation',0.0,1.0,0.0)">  <-- </button>
-            <button onclick="Transform('Rotation',0.0,-1.0,0.0)"> --> </button>
-        </div>
-        <br>
-        <div>
-            Scale
-            <br>
-            <button onclick="Transform('Scale',0.25,0.25,0.25)">    + </button>
-            <button onclick="Transform('Scale',-0.25,-0.25,-0.25)"> - </button>
-        </div>
-
-        <script src="index.js"></script>
     </body>
+
+    <script src="index.js"> </script>
+    <script src="app.js"> </script>
 </html>

@@ -1,0 +1,10 @@
+#header {
+    background-color:lightblue;
+    color:black;
+    text-align: center;
+}
+
+#toolbar {
+    display: inline;
+    text-align: center;
+}
