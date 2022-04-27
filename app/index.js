@@ -1,96 +1,111 @@
 $(document).ready(function() {
     $('#addbutton').click(function() {
     	$("#select").append($('<option>', {
-          	    value: ID,
-                text: "Screen"+ID.toString()            
+          	    value: id,
+                text: "Screen"+id.toString()            
         }))
 
-        $("#select").val(ID).change();
+        $("#select").val(id).change();
 
-        AddScreen(ID);
-        currentID=ID;
-        ID=ID+1;
+        let message=new Message(id,"Add");
+        message.Send();
+
+       id++;
     })
 
     $('#deletebutton').click(function() {
         currentID=$('select').val();
 
-        if(currentID!=null){
+        if(currentID!=null) {
             console.log(currentID);
             $('#select option').each(function() {
                 if ($(this).val() == currentID) {
                     $(this).remove();
-                    RemoveScreen(currentID);
-                    currentID=$('select').val();
-                    console.log(currentID);
+                    let message=new Message(currentID,"Remove");
+                    message.Send();
                 }
             });
         }
         else {
-            ID=0;
+            id=0;
         }
     })
 
-    $('#tx').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.x=parseFloat($('#tx').val());
-        message.vec3.y=0.0;
-        message.vec3.z=0.0;
+    $('#tx').on('change', function() {
+        currentID=$('select').val();
 
-        Transform("Translate");
+        if(currentID!=null) {
+            x=parseFloat($('#tx').val());
+            let direction=new Vec3(x,0.0,0.0);
+            let message=new Message(currentID,"Translate", direction);
+            message.Send();
+        }
     })
 
-    $('#ty').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.y=parseFloat($('#ty').val());
-        message.vec3.x=0.0;
-        message.vec3.z=0.0;
+    $('#ty').on('change', function() {
+        currentID=$('select').val(); 
 
-        Transform("Translate");
+        if(currentID!=null) {
+            y=parseFloat($('#ty').val());
+            let direction=new Vec3(0.0,y,0.0);
+            let message=new Message(currentID,"Translate", direction);
+            message.Send();
+        }
+    })
+            
+    $('#tz').on('change', function() {
+        currentID=$('select').val(); 
+
+        if(currentID!=null) {
+            z=parseFloat($('#tz').val());
+            let direction=new Vec3(0.0,0.0,z);
+            let message=new Message(currentID,"Translate", direction);
+            message.Send();
+        }
     })
 
-    $('#tz').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.z=parseFloat($('#tz').val());
-        message.vec3.y=0.0;
-        message.vec3.x=0.0;
+    $('#rx').on('change', function() {
+        currentID=$('select').val(); 
 
-        Transform("Translate");
+        if(currentID!=null) {
+            x=parseFloat($('#rx').val());
+            let direction=new Vec3(x,0.0,0.0);
+            let message=new Message(currentID,"Rotate", direction);
+            message.Send();
+        }
     })
 
-    $('#rx').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.x=parseFloat($('#rx').val());
-        message.vec3.y=0.0;
-        message.vec3.z=0.0;
+    $('#ry').on('change', function() {
+        currentID=$('select').val(); 
 
-        Transform("Rotate");
+        if(currentID!=null) {
+            y=parseFloat($('#ry').val());
+            let direction=new Vec3(0.0,y,0.0);
+            let message=new Message(currentID,"Rotate", direction);
+            message.Send();
+        }
     })
 
-    $('#ry').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.y=parseFloat($('#ry').val());
-        message.vec3.x=0.0;
-        message.vec3.z=0.0;
+    $('#rz').on('change', function() {
+        currentID=$('select').val(); 
 
-        Transform("Rotate");
+        if(currentID!=null) {
+            z=parseFloat($('#rz').val());
+            let direction=new Vec3(0.0,0.0,z);
+            let message=new Message(currentID,"Rotate", direction);
+            message.Send();
+        }
     })
 
-    $('#rz').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.z=parseFloat($('#rz').val());
-        message.vec3.y=0.0;
-        message.vec3.x=0.0;
+    $('#s').on('change', function() {
+        currentID=$('select').val();
 
-        Transform("Rotate");
-    })
-
-    $('#s').on('change', function(){
-        message.currentID=$('select').val();
-        message.vec3.z=parseFloat($('#s').val());
-        message.vec3.y=parseFloat($('#s').val());
-        message.vec3.x=parseFloat($('#s').val());
-
-        Transform("Scale");
+        if(currentID!=null) {
+            scaleValue=parseFloat($('#s').val());
+            let direction=new Vec3();
+            direction.SetDirection(scaleValue)
+            let message=new Message(currentID,"Scale", direction);
+            message.Send();
+        }
     })
 })
