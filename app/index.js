@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#tx').on('change', function() {
+    $('#tx').on('input', function() {
         currentID=$('select').val();
 
         if(currentID!=null) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#ty').on('change', function() {
+    $('#ty').on('input', function() {
         currentID=$('select').val(); 
 
         if(currentID!=null) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
         }
     })
             
-    $('#tz').on('change', function() {
+    $('#tz').on('input', function() {
         currentID=$('select').val(); 
 
         if(currentID!=null) {
@@ -64,7 +64,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#rx').on('change', function() {
+    $('#rx').on('input', function() {
         currentID=$('select').val(); 
 
         if(currentID!=null) {
@@ -75,7 +75,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#ry').on('change', function() {
+    $('#ry').on('input', function() {
         currentID=$('select').val(); 
 
         if(currentID!=null) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#rz').on('change', function() {
+    $('#rz').on('input', function() {
         currentID=$('select').val(); 
 
         if(currentID!=null) {
@@ -97,7 +97,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#s').on('change', function() {
+    $('#s').on('input', function() {
         currentID=$('select').val();
 
         if(currentID!=null) {
