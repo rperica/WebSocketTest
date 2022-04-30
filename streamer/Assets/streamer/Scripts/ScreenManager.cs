@@ -45,38 +45,8 @@ public class ScreenManager : MonoBehaviour
         webSocket = new WebSocket("ws://localhost:8080");
         webSocket.Connect();
         payload = new Payload();
-
         screens = new List<Screen>();
-
-        webSocket.OnMessage += (sender, message) =>
-        {
-            payload = JsonUtility.FromJson<Payload>(message.Data);
-            screenID = payload.screenID;
-
-            switch(payload.type)
-            {
-                case "Add":
-                    performAction = true;
-                    screenAction = AddNewScreen;
-                    break;
-                case "Remove":
-                    performAction = true;
-                    screenAction = RemoveScreen;
-                    break;
-                case "Translate":
-                    performAction = true;
-                    screenAction = TranslateScreen;
-                    break;
-                case "Rotate":
-                    performAction = true;
-                    screenAction = RotateScreen;
-                    break;
-                case "Scale":
-                    performAction = true;
-                    screenAction = ScaleScreen;
-                    break;
-            }
-        };
+        webSocket.OnMessage += WebSocket_OnMessage;
     }
 
     private void Update()
@@ -86,7 +56,7 @@ public class ScreenManager : MonoBehaviour
             screenAction?.Invoke();
         }
     }
-  
+
     private void AddNewScreen()
     {
         performAction = false;
@@ -123,5 +93,35 @@ public class ScreenManager : MonoBehaviour
         performAction = false;
         Vector3 scaleSize = Utility.ConvertToVector3(payload.vec3);
         screens.Find(x => x.screenID == screenID).Scale(scaleSize);
+    }
+
+    private void WebSocket_OnMessage(object sender, MessageEventArgs e)
+    {
+        payload = JsonUtility.FromJson<Payload>(e.Data);
+        screenID = payload.screenID;
+
+        switch (payload.type)
+        {
+            case "Add":
+                performAction = true;
+                screenAction = AddNewScreen;
+                break;
+            case "Remove":
+                performAction = true;
+                screenAction = RemoveScreen;
+                break;
+            case "Translate":
+                performAction = true;
+                screenAction = TranslateScreen;
+                break;
+            case "Rotate":
+                performAction = true;
+                screenAction = RotateScreen;
+                break;
+            case "Scale":
+                performAction = true;
+                screenAction = ScaleScreen;
+                break;
+        }
     }
 }

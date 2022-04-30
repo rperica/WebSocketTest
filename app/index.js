@@ -6,6 +6,7 @@ $(document).ready(function() {
         }))
 
         $("#select").val(id).change();
+        ResetSlider();
 
         let message=new Message(id,"Add");
         message.Send();
@@ -21,6 +22,7 @@ $(document).ready(function() {
             $('#select option').each(function() {
                 if ($(this).val() == currentID) {
                     $(this).remove();
+                    ResetSlider();
                     let message=new Message(currentID,"Remove");
                     message.Send();
                 }
@@ -29,6 +31,10 @@ $(document).ready(function() {
         else {
             id=0;
         }
+    })
+
+    $('#select').on('change', function() {
+        ResetSlider();
     })
 
     let prevtx=0;
@@ -131,7 +137,12 @@ $(document).ready(function() {
     })
 })
 
-//Samo da radi slider,smjer -> povecaj, smjer <- smanjuj vrijednost
+function ResetSlider()
+{
+    $('.slider').val(0);
+}
+
+// Increase/decrease step value depending on sliding direction
 function SliderDirection(prev,current,step)
 {
     if(current>0)
